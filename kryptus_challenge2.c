@@ -46,32 +46,26 @@ int vaziaListaDinamica(struct DLista *lista)
    return(lista->tamanho == 0);
 }
 
-/* Função insere ordenado: insere elemento em ordem. */
 void insereOrdenado(struct DLista *lista, void *valor)
 {
    struct Noh *novo;
-   struct Noh *anterior = NULL; /* ponteiro para elemento anterior */
-   struct Noh p = lista; /* ponteiro para percorrer a lista */
+   struct Noh *anterior = NULL; 
+   struct Noh p = lista;
    
-   /* procura a posição de inserção */
    while(p != NULL && p->info < valor)
    {
       anterior = p;
       p = p->proximo;
    }
 
-   /* cria novo elemento */
    novo = (struct Noh *) malloc(sizeof(struct Noh));
    novo->info = valor;
 
-   /* encadeia elemento */
    if (anterior == NULL)
    {
-      /* insere elemento no início */	   
       novo->proximo = lista;
       lista = novo;
-   }else{
-      /* insere elemento no meio da lista */	   
+   } else {  
       novo->proximo = anterior->proximo;
       anteriro->proximo = novo;
    return lista;   
