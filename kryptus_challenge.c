@@ -13,7 +13,6 @@ include <stdio.h>
 typedef void (*funcaoImpressao)  (void *inf);
 typedef  int (*funcaoComparacao) (void *, void *);
 
-/* Estrutura de um nó da lista. */
 struct Noh
 {
     struct Noh *anterior;	
@@ -30,7 +29,6 @@ struct DLista
    funcaoComparacao fc;
 };
 
-/* Cria uma lista dinâmica. */
 struct DLista* criarLista(funcaoComparacao pfc)
 {
   struct DLista *descritor;
@@ -44,7 +42,6 @@ struct DLista* criarLista(funcaoComparacao pfc)
   return descritor;
 }
 
-/* put */
 void adicionarInfo(struct DLista *lista, void *novaInfo){
 
    struct Noh *novo;
@@ -66,13 +63,11 @@ void adicionarInfo(struct DLista *lista, void *novaInfo){
    lista->ultimo = novo;
 }
 
-/* Verifica se a lista está vazia. */
 int vaziaListaDinamica(struct DLista *lista)
 {
    return(lista->tamanho == 0);
 }
 
-/* remove */
 void removerInfo(struct DLista *lista, void *info){
 
    struct Noh *atual, *anterior;
@@ -147,7 +142,6 @@ int insere_lista_final(struct DLista *lista, void *novaInfo)
   return 1;
 }
 
-/* display */
 void mostrarLista(struct DLista *lista, funcaoImpressao fi){
 
    struct Noh *atual;
