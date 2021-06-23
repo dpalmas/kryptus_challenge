@@ -20,7 +20,6 @@ struct Noh
     struct Noh *proximo;
 };
 
-/* Estrutura da lista. */
 struct DLista
 {
    struct Noh *primeiro;
@@ -42,12 +41,11 @@ struct DLista* criarLista(funcaoComparacao pfc)
   return descritor;
 }
 
-void adicionarInfo(struct DLista *lista, void *novaInfo){
-
+void adicionarInfo(struct DLista *lista, void *novaInfo)
+{
    struct Noh *novo;
-
+ 
    novo = (struct Noh *) malloc(sizeof(struct Noh));
-
    lista->tamanho++;
 
    novo->info = novaInfo;
@@ -68,8 +66,8 @@ int vaziaListaDinamica(struct DLista *lista)
    return(lista->tamanho == 0);
 }
 
-void removerInfo(struct DLista *lista, void *info){
-
+void removerInfo(struct DLista *lista, void *info)
+{
    struct Noh *atual, *anterior;
 
    if (lista == NULL)
@@ -78,17 +76,17 @@ void removerInfo(struct DLista *lista, void *info){
    anterior   = NULL;
    atual = lista->primeiro;
 
-   while(atual != NULL){
-
-       if (lista->fc(atual->info, info) == 0){
-
-           if (atual == lista->primeiro){
+   while(atual != NULL)
+   {
+       if (lista->fc(atual->info, info) == 0)
+       {
+           if (atual == lista->primeiro)
+           {
              lista->primeiro = atual->proximo;
-
-           } else if(atual == lista->ultimo){
+           } else if(atual == lista->ultimo) {
               lista->ultimo = anterior;
               anterior->proximo = NULL;
-           } else{
+           } else {
                anterior->proximo = atual->proximo;
            }
 
@@ -96,10 +94,8 @@ void removerInfo(struct DLista *lista, void *info){
            free(atual);
            break;
        }
-
        anterior = atual;
        atual = atual->proximo;
-
    }
 }
 
@@ -130,11 +126,13 @@ int insere_lista_final(struct DLista *lista, void *novaInfo)
       return 0;
   novo->info = novaInfo;
   novo->proximo = NULL;
-  if((*novaInfo) == NULL) { //lista vazia: insere início
-      *novaInfo = novo;
+  if((*novaInfo) == NULL) 
+  {
+    *novaInfo = novo;
   } else {
     aux = *novaInfo;
-    while(aux->proximo != NULL) {
+    while(aux->proximo != NULL) 
+    {
       aux = aux->proximo;
     }
     aux->proximo = novo;
@@ -142,26 +140,23 @@ int insere_lista_final(struct DLista *lista, void *novaInfo)
   return 1;
 }
 
-void mostrarLista(struct DLista *lista, funcaoImpressao fi){
-
+void mostrarLista(struct DLista *lista, funcaoImpressao fi)
+{
    struct Noh *atual;
-
    atual = lista->primeiro;
 
-   while (atual != NULL){
-
-        /* imprime a informacao do no atual da lista */
+   while (atual != NULL)
+   {
         fi(atual->info);
-        /* faz o atual apontar para o proximo no da lista*/
         atual = atual->proximo;
    }
 }
 
 struct DLista *controiLista(void *vet, int tam)
 {
-   struct DLista *novaLista; /* variável auxiliar para criar a nova lista */	
+   struct DLista *novaLista; 
    novaLista = criarDescritor();
-   struct Noh *p; /* variável auxiliar para percorrer a lista */
+   struct Noh *p; 
    int i;
    novaLista = NULL;
 
